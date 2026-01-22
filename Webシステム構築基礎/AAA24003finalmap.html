@@ -150,11 +150,34 @@
           // 地図にルートを追加
           addRouteLayer();
 
+
+
+        fetch('./sakai_hinanjo.geojson') // 変換したGeoJSONファイル
+          .then((res) => res.json())
+          .then((data) => {
+            const shelterLayer = L.geoJSON(data, {
+              pointToLayer: (feature, latlng) =>
+                L.marker(latlng, {
+                  icon: L.icon({
+                    iconUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png',
+                    iconSize: [25, 41],
+                    iconAnchor: [12, 41]
+                  })
+                }),
+            })
+            .bindPopup((layer) => layer.feature.properties.name); // データの名称プロパティ名はCSV変換により異なる場合あり
+
+            shelterLayer.addTo(map);
+            LayerControl.addOverlay(shelterLayer, '避難所（堺市）');
+          });
+      
+      
       //スケールバー
       L.control.scale().addTo(map);
     </script>
   </body>
 </html>
+
 
 
 
