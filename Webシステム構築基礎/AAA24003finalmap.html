@@ -161,7 +161,7 @@
           popupAnchor: [1, -34],
           shadowSize: [41, 41]
         });
-        fetch('./sakai_hinanjo.geojson') 
+        fetch('./sakai_hinanjo_naka.geojson') 
           .then((res) => res.json())
           .then((data) => {
             const shelterLayer = L.geoJSON(data, {
@@ -181,6 +181,7 @@
     </script>
   </body>
 </html>
+
 
 
 
