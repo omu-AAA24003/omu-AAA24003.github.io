@@ -161,12 +161,12 @@
           popupAnchor: [1, -34],
           shadowSize: [41, 41]
         });
-        fetch('./sakai_hinanjo_naka.geojson') 
+        fetch('./sakai_hinanjo.geojson') 
           .then((res) => res.json())
           .then((data) => {
             const shelterLayer = L.geoJSON(data, {
               filter: (feature) => {
-                return feature.properties.ward === '中区';
+                return feature.properties.区名 === '中区';
               },
               pointToLayer: (feature, latlng) => {
                 return L.marker(latlng, { icon: redIcon})
@@ -184,6 +184,7 @@
     </script>
   </body>
 </html>
+
 
 
 
