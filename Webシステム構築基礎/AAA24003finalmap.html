@@ -165,9 +165,9 @@
           .then((res) => res.json())
           .then((data) => {
             const shelterLayer = L.geoJSON(data, {
-              pointToLayer: (feature, latlng) =>
-                L.marker(latlng, { icon: redIcon})
-                }),
+              pointToLayer: (feature, latlng) => {
+                return L.marker(latlng, { icon: redIcon})
+                }
             })
             .bindPopup((layer) => layer.feature.properties.name); // データの名称プロパティ名はCSV変換により異なる場合あり
 
@@ -181,6 +181,7 @@
     </script>
   </body>
 </html>
+
 
 
 
