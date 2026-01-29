@@ -80,9 +80,12 @@
         .then((res) => res.json())
         .then((json) => {
           // GeoJSONレイヤーを作成
-          const markers = L.geoJSON(json)
+          const markers = L.markerClusterGroup()
             .bindPopup((layer) => layer.feature.properties.P29_004) // ポップアップで学校名を表示
             .addTo(map);
+
+          L.geoJSON(json).addTo(markers);
+          
           // チェックボックス
           LayerControl.addOverlay(markers, '学校');
         });
@@ -181,6 +184,7 @@
     </script>
   </body>
 </html>
+
 
 
 
